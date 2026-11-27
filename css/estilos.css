@@ -1,0 +1,54 @@
+:root {
+  --color-principal: #8a3b12;
+  --color-fondo: #f6f4ee;
+}
+
+body { background: var(--color-fondo); }
+.navbar-brand { font-weight: 700; }
+
+.btn-primary {
+  background: var(--color-principal);
+  border-color: var(--color-principal);
+}
+.btn-primary:hover { filter: brightness(1.15); }
+
+.tarjeta {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Las tarjetas de servicios se levantan al pasar el mouse */
+article .tarjeta { transition: transform 0.2s, box-shadow 0.2s; }
+article .tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Animación de entrada; backwards deja que el hover siga funcionando al terminar */
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+article .tarjeta { animation: aparecer 0.4s ease-out backwards; }
+
+.imagen-servicio { height: 200px; object-fit: cover; border-radius: 12px 12px 0 0; }
+.sin-imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9edf1;
+  color: #5e6873;
+}
+.precio { color: var(--color-principal); margin-left: 8px; }
+.vista-previa { max-height: 180px; border-radius: 8px; }
+
+/* Avisos que se desvanecen (los oculta app.js) */
+.aviso { transition: opacity 0.5s; }
+.aviso.ocultar { opacity: 0; }
+
+/* En celulares, imágenes más bajas y tablas con letra más chica */
+@media (max-width: 576px) {
+  .imagen-servicio { height: 150px; }
+  .table { font-size: 0.9rem; }
+}
